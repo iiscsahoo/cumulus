@@ -17,3 +17,7 @@ echo "Disabled because publish already occurred"
 #   --dist-tag=${NPM_TAG} \
 #   --exact
 
+echo "Running build for testing purposes"
+
+cd packages/deployment
+npm run build
