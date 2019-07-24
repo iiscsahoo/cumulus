@@ -11,7 +11,7 @@ rm -rf website/build
 #npm run docs-build
 npm run bootstrap-no-build
 ls -ltra ./packages/
-npx lerna run prepare
+npx lerna prepare
 set +e; apt-get update; set -e;
 apt-get install -y jq rsync
 echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
