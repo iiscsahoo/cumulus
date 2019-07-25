@@ -9,7 +9,9 @@ export NPM_TOKEN=''
 
 echo "Disabled because publish already occurred"
 echo "Publishing packages to NPM with version=${VERSION} and tag=${NPM_TAG}"
-npm_config_unsafe_perm=true; npx lerna publish \
+export npm_config_unsafe_perm=true
+
+npx lerna publish \
   ${VERSION} \
   --no-git-tag-version \
   --no-push \
