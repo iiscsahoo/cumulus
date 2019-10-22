@@ -126,7 +126,7 @@ resource "aws_lambda_function" "message_consumer" {
 
 module "schedule_sf_source" {
   source = "../../github_lambda_source"
-  archive = ${path.module}/../../packages/api/dist/sfScheduler/lambda.zip
+  archive = "${path.module}/../../packages/api/dist/sfScheduler/lambda.zip"
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-sf-source.zip"
