@@ -12,7 +12,7 @@ module "hello_world_source" {
 }
 
 resource "aws_lambda_function" "hello_world_task" {
-  depends_on       = [ hello_world_source ]
+  depends_on       = [ module.hello_world_source ]
   function_name    = "${var.prefix}-HelloWorld"
   filename         = local.hello_world_dist_path
   source_code_hash = filebase64sha256(local.hello_world_dist_path)
