@@ -1,5 +1,5 @@
 module "fallback_consumer_source" {
-  source = "../../github_lambda_source"
+  source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/messageConsumer/lambda.zip"
   release = var.release
   repo = "nasa/cumulus"
@@ -39,7 +39,7 @@ resource "aws_lambda_function" "fallback_consumer_source" {
 }
 
 module "kinesis_event_logger_source" {
-  source = "../../github_lambda_source"
+  source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/payloadLogger/lambda.zip"
   release = var.release
   repo = "nasa/cumulus"
@@ -125,7 +125,7 @@ resource "aws_lambda_function" "message_consumer" {
 }
 
 module "schedule_sf_source" {
-  source = "../../github_lambda_source"
+  source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/sfScheduler/lambda.zip"
   release = var.release
   repo = "nasa/cumulus"
@@ -164,7 +164,7 @@ resource "aws_lambda_function" "schedule_sf" {
 }
 
 module "sf_semaphore_down_source" {
-  source = "../../github_lambda_source"
+  source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/sfSemaphoreDown/lambda.zip"
   release = var.release
   repo = "nasa/cumulus"
@@ -198,7 +198,7 @@ resource "aws_lambda_function" "sf_semaphore_down" {
 }
 
 module "sf_sns_report_source" {
-  source = "../../github_lambda_source"
+  source = "../github_lambda_source"
   archive = "${path.module}/../../tasks/sf-sns-report/dist/lambda.zip"
   release = var.release
   repo = "nasa/cumulus"
@@ -239,7 +239,7 @@ resource "aws_lambda_function" "sf_sns_report_task" {
 }
 
 module "sf_starter_source" {
-  source = "../../github_lambda_source"
+  source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/sfStarter/lambda.zip"
   release = var.release
   repo = "nasa/cumulus"

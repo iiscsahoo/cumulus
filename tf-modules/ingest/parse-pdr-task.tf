@@ -3,7 +3,7 @@ locals {
 }
 
 module "parse_pdr_source" {
-  source = "../../github_lambda_source"
+  source = "../github_lambda_source"
   archive = local.dist_path
   release = var.release
   repo = "nasa/cumulus"
