@@ -48,7 +48,7 @@ module "kinesis_event_logger_source" {
 }
 
 resource "aws_lambda_function" "kinesis_inbound_event_logger" {
-  depends_on       = [ module.kinesis_inbound_event_logger_source ]
+  depends_on       = [ module.kinesis_event_logger_source ]
   function_name    = "${var.prefix}-KinesisInboundEventLogger"
   filename         = "${path.module}/../../packages/api/dist/payloadLogger/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/payloadLogger/lambda.zip")
