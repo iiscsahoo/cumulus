@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/files-to-granules/dist/lambda.zip"
+  files_to_granules_dist_path = "${path.module}/../../tasks/files-to-granules/dist/lambda.zip"
 }
 
 module "files_to_granules_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.files_to_granules_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-files-to-granules-task.zip"
@@ -12,10 +12,10 @@ module "files_to_granules_source" {
 }
 
 resource "aws_lambda_function" "files_to_granules_task" {
-  depends_on       = [ files_to_granules_source ]
+  depends_on       = [ module.files_to_granules_source.result ]
   function_name    = "${var.prefix}-FilesToGranules"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.files_to_granules_dist_path
+  source_code_hash = filebase64sha256(local.files_to_granules_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

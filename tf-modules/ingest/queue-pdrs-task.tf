@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/queue-pdrs/dist/lambda.zip"
+  queue_pdrs_dist_path = "${path.module}/../../tasks/queue-pdrs/dist/lambda.zip"
 }
 
 module "queue_pdrs_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.queue_pdrs_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-queue-pdrs-task.zip"
@@ -13,10 +13,10 @@ module "queue_pdrs_source" {
 
 
 resource "aws_lambda_function" "queue_pdrs_task" {
-  depends_on       = [ queue_pdrs_source ]
+  depends_on       = [ module.queue_pdrs_source.result ]
   function_name    = "${var.prefix}-QueuePdrs"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.queue_pdrs_dist_path
+  source_code_hash = filebase64sha256(local.queue_pdrs_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

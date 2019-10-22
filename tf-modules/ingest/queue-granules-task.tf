@@ -1,5 +1,5 @@
 locals {
-  dist_path = "${path.module}/../../tasks/queue-granules/dist/lambda.zip"
+  queue_granules_dist_path = "${path.module}/../../tasks/queue-granules/dist/lambda.zip"
 }
 
 module "queue_granules_source" {
@@ -12,10 +12,10 @@ module "queue_granules_source" {
 }
 
 resource "aws_lambda_function" "queue_granules_task" {
-  depends_on       = [ queue_granules_source ]
+  depends_on       = [ module.queue_granules_source.result ]
   function_name    = "${var.prefix}-QueueGranules"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.queue_granules_dist_path
+  source_code_hash = filebase64sha256(local.queue_granules_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

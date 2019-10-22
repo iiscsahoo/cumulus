@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/move-granules/dist/lambda.zip"
+  move_granules_dist_path = "${path.module}/../../tasks/move-granules/dist/lambda.zip"
 }
 
 module "move_granules_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.move_granules_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-move-granules-task.zip"
@@ -13,10 +13,10 @@ module "move_granules_source" {
 
 
 resource "aws_lambda_function" "move_granules_task" {
-  depends_on       = [ move_granules_source ]
+  depends_on       = [ module.move_granules_source.result ]
   function_name    = "${var.prefix}-MoveGranules"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.move_granules_dist_path
+  source_code_hash = filebase64sha256(local.move_granules_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

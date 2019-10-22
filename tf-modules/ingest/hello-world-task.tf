@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/hello-world/dist/lambda.zip"
+  hello_world_dist_path = "${path.module}/../../tasks/hello-world/dist/lambda.zip"
 }
 
 module "hello_world_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.hello_world_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-hello-world-task.zip"
@@ -14,8 +14,8 @@ module "hello_world_source" {
 resource "aws_lambda_function" "hello_world_task" {
   depends_on       = [ hello_world_source ]
   function_name    = "${var.prefix}-HelloWorld"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.hello_world_dist_path
+  source_code_hash = filebase64sha256(local.hello_world_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

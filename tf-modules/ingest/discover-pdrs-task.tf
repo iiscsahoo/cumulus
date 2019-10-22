@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/discover-pdrs/dist/lambda.zip"
+  discover_pdrs_dist-path = "${path.module}/../../tasks/discover-pdrs/dist/lambda.zip"
 }
 
 module "discover_pdrs_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.discover_pdrs_dist
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-discover-pdrs-task.zip"
@@ -12,10 +12,10 @@ module "discover_pdrs_source" {
 }
 
 resource "aws_lambda_function" "discover_pdrs_source" {
-  depends_on       = [ discover_pdrs_source ]
-  filename         = local.dist_path
+  depends_on       = [ module.discover_pdrs_source.result ]
+  filename         = local.discover_pdrs_dist
   function_name    = "${var.prefix}-DiscoverPdrs"
-  source_code_hash = filebase64sha256(local.dist_path)
+  source_code_hash = filebase64sha256(local.discover_pdrs_dist)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

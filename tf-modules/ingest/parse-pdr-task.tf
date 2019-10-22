@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/parse-pdr/dist/lambda.zip"
+  parse_pdr_dist_path = "${path.module}/../../tasks/parse-pdr/dist/lambda.zip"
 }
 
 module "parse_pdr_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.parse_pdr_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-parse-pdr-task.zip"
@@ -13,8 +13,8 @@ module "parse_pdr_source" {
 
 resource "aws_lambda_function" "parse_pdr_task" {
   function_name    = "${var.prefix}-ParsePdr"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.parse_pdr_dist_path
+  source_code_hash = filebase64sha256(local.parse_pdr_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

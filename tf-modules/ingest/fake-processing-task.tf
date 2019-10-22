@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/fake-processing-task/dist/lambda.zip"
+  fake_processing_dist_path = "${path.module}/../../tasks/fake-processing-task/dist/lambda.zip"
 }
 
 module "fake_processing_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.fake_processing_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-fake-processing-task.zip"
@@ -12,10 +12,10 @@ module "fake_processing_source" {
 }
 
 resource "aws_lambda_function" "fake_processing_task" {
-  depends_on       = [ fake_processing_source ]
+  depends_on       = [ module.fake_processing_source.result ]
   function_name    = "${var.prefix}-FakeProcessing"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.fake_processing_dist_path
+  source_code_hash = filebase64sha256(local.fake_processing_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

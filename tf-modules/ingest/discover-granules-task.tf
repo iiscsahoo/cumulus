@@ -1,10 +1,10 @@
 locals {
-  dist_path = "${path.module}/../../tasks/discover-granules/dist/lambda.zip"
+  discover_granules_dist_path = "${path.module}/../../tasks/discover-granules/dist/lambda.zip"
 }
 
 module "discover_granules_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.discover_granules_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-discover-granules-task.zip"
@@ -13,10 +13,10 @@ module "discover_granules_source" {
 
 
 resource "aws_lambda_function" "discover_granules_task" {
-  depends_on       = [ discover_granules_source ]
+  depends_on       = [ module.discover_granules_source.result ]
   function_name    = "${var.prefix}-DiscoverGranules"
-  filename         = local.dist_path
-  source_code_hash = filebase64sha256(local.dist_path)
+  filename         = local.discover_granules_dist_path
+  source_code_hash = filebase64sha256(local.discover_granules_dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"
