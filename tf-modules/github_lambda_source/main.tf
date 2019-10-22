@@ -4,5 +4,5 @@ data "external" "github" {
 }
 
 output "result" {
-    value = external.github.result
+    value = data.external.github.result
 }
