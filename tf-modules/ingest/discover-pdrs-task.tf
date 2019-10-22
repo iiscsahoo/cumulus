@@ -12,7 +12,7 @@ module "discover_pdrs_source" {
 }
 
 resource "aws_lambda_function" "discover_pdrs_source" {
-queue_pdrs_source  function_name    = "${var.prefix}-DiscoverPdrs"
+  depends_on       = [ discover_pdrs_source ]
   filename         = local.dist_path
   function_name    = "${var.prefix}-DiscoverPdrs"
   source_code_hash = filebase64sha256(local.dist_path)
