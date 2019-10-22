@@ -1,5 +1,5 @@
 locals {
-  discover_pdrs_dist-path = "${path.module}/../../tasks/discover-pdrs/dist/lambda.zip"
+  discover_pdrs_dist = "${path.module}/../../tasks/discover-pdrs/dist/lambda.zip"
 }
 
 module "discover_pdrs_source" {
