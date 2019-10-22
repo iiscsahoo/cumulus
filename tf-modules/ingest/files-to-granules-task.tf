@@ -12,7 +12,7 @@ module "files_to_granules_source" {
 }
 
 resource "aws_lambda_function" "files_to_granules_task" {
-  depends_on       = [ module.files_to_granules_source.result ]
+  depends_on       = [ module.files_to_granules_source ]
   function_name    = "${var.prefix}-FilesToGranules"
   filename         = local.files_to_granules_dist_path
   source_code_hash = filebase64sha256(local.files_to_granules_dist_path)

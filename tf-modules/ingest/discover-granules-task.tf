@@ -13,7 +13,7 @@ module "discover_granules_source" {
 
 
 resource "aws_lambda_function" "discover_granules_task" {
-  depends_on       = [ module.discover_granules_source.result ]
+  depends_on       = [ module.discover_granules_source ]
   function_name    = "${var.prefix}-DiscoverGranules"
   filename         = local.discover_granules_dist_path
   source_code_hash = filebase64sha256(local.discover_granules_dist_path)

@@ -13,7 +13,7 @@ module "move_granules_source" {
 
 
 resource "aws_lambda_function" "move_granules_task" {
-  depends_on       = [ module.move_granules_source.result ]
+  depends_on       = [ module.move_granules_source ]
   function_name    = "${var.prefix}-MoveGranules"
   filename         = local.move_granules_dist_path
   source_code_hash = filebase64sha256(local.move_granules_dist_path)

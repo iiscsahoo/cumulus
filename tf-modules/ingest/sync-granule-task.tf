@@ -12,7 +12,7 @@ module "sync_granule_source" {
 }
 
 resource "aws_lambda_function" "sync_granule_task" {
-  depends_on       = [ module.sync_granule_source.result ]
+  depends_on       = [ module.sync_granule_source ]
   function_name    = "${var.prefix}-SyncGranule"
   filename         = local.sync_granules_dist_path
   source_code_hash = filebase64sha256(local.sync_granules_dist_path)

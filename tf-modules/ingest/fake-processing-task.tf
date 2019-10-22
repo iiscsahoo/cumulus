@@ -12,7 +12,7 @@ module "fake_processing_source" {
 }
 
 resource "aws_lambda_function" "fake_processing_task" {
-  depends_on       = [ module.fake_processing_source.result ]
+  depends_on       = [ module.fake_processing_source ]
   function_name    = "${var.prefix}-FakeProcessing"
   filename         = local.fake_processing_dist_path
   source_code_hash = filebase64sha256(local.fake_processing_dist_path)

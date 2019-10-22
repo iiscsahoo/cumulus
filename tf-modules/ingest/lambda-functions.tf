@@ -8,7 +8,7 @@ module "fallback_consumer_source" {
 }
 
 resource "aws_lambda_function" "fallback_consumer_source" {
-  depends_on       = [ module.fallback_consumer_source.result ]
+  depends_on       = [ module.fallback_consumer_source ]
   function_name    = "${var.prefix}-fallbackConsumer"
   filename         = "${path.module}/../../packages/api/dist/messageConsumer/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/messageConsumer/lambda.zip")
@@ -48,7 +48,7 @@ module "kinesis_event_logger_source" {
 }
 
 resource "aws_lambda_function" "kinesis_inbound_event_logger" {
-  depends_on       = [ module.kinesis_inbound_event_logger_source.result ]
+  depends_on       = [ module.kinesis_inbound_event_logger_source ]
   function_name    = "${var.prefix}-KinesisInboundEventLogger"
   filename         = "${path.module}/../../packages/api/dist/payloadLogger/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/payloadLogger/lambda.zip")
@@ -72,7 +72,7 @@ resource "aws_lambda_function" "kinesis_inbound_event_logger" {
 }
 
 resource "aws_lambda_function" "kinesis_outbound_event_logger" {
-  depends_on       = [ module.kinesis_event_logger_source.result ]
+  depends_on       = [ module.kinesis_event_logger_source ]
   function_name    = "${var.prefix}-KinesisOutboundEventLogger"
   filename         = "${path.module}/../../packages/api/dist/payloadLogger/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/payloadLogger/lambda.zip")
@@ -96,7 +96,7 @@ resource "aws_lambda_function" "kinesis_outbound_event_logger" {
 }
 
 resource "aws_lambda_function" "message_consumer" {
-  depends_on       = [ module.message_consumer_source.result ]
+  depends_on       = [ module.message_consumer_source ]
   function_name    = "${var.prefix}-messageConsumer"
   filename         = "${path.module}/../../packages/api/dist/messageConsumer/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/messageConsumer/lambda.zip")
@@ -134,7 +134,7 @@ module "schedule_sf_source" {
 }
 
 resource "aws_lambda_function" "schedule_sf" {
-  depends_on       = [ module.schedule_sf_source.result ]
+  depends_on       = [ module.schedule_sf_source ]
   function_name    = "${var.prefix}-ScheduleSF"
   description      = "This lambda function is invoked by scheduled rules created via cumulus API"
   filename         = "${path.module}/../../packages/api/dist/sfScheduler/lambda.zip"
@@ -173,7 +173,7 @@ module "sf_semaphore_down_source" {
 }
 
 resource "aws_lambda_function" "sf_semaphore_down" {
-  depends_on       = [ module.sf_semaphore_down_source.result ]
+  depends_on       = [ module.sf_semaphore_down_source ]
   function_name    = "${var.prefix}-sfSemaphoreDown"
   filename         = "${path.module}/../../packages/api/dist/sfSemaphoreDown/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/sfSemaphoreDown/lambda.zip")
@@ -207,7 +207,7 @@ module "sf_sns_report_source" {
 }
 
 resource "aws_lambda_function" "sf_sns_report_task" {
-  depends_on       = [ module.sf_sns_report_source.result ]
+  depends_on       = [ module.sf_sns_report_source ]
   function_name    = "${var.prefix}-SfSnsReport"
   filename         = "${path.module}/../../tasks/sf-sns-report/dist/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../tasks/sf-sns-report/dist/lambda.zip")
@@ -248,7 +248,7 @@ module "sf_starter_source" {
 }
 
 resource "aws_lambda_function" "sqs2sf" {
-  depends_on       = [ module.sf_fstarter_source.result ]
+  depends_on       = [ module.sf_fstarter_source ]
   function_name    = "${var.prefix}-sqs2sf"
   filename         = "${path.module}/../../packages/api/dist/sfStarter/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/sfStarter/lambda.zip")
@@ -272,7 +272,7 @@ resource "aws_lambda_function" "sqs2sf" {
 }
 
 resource "aws_lambda_function" "sqs2sfThrottle" {
-  depends_on       = [ module.sf_starter_source.result ]
+  depends_on       = [ module.sf_starter_source ]
   function_name    = "${var.prefix}-sqs2sfThrottle"
   filename         = "${path.module}/../../packages/api/dist/sfStarter/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/sfStarter/lambda.zip")

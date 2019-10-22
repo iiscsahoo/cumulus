@@ -14,7 +14,7 @@ module "pdr_status_check_source" {
 
 
 resource "aws_lambda_function" "pdr_status_check_task" {
-  depends_on       = [ module.pdr_status_check_source.result ]
+  depends_on       = [ module.pdr_status_check_source ]
   function_name    = "${var.prefix}-PdrStatusCheck"
   filename         = local.pdr_status_check_dist_path
   source_code_hash = filebase64sha256(local.pdr_status_check_dist_path)

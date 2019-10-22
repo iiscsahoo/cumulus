@@ -13,7 +13,7 @@ module "queue_pdrs_source" {
 
 
 resource "aws_lambda_function" "queue_pdrs_task" {
-  depends_on       = [ module.queue_pdrs_source.result ]
+  depends_on       = [ module.queue_pdrs_source ]
   function_name    = "${var.prefix}-QueuePdrs"
   filename         = local.queue_pdrs_dist_path
   source_code_hash = filebase64sha256(local.queue_pdrs_dist_path)
