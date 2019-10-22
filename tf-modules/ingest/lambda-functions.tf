@@ -1,4 +1,4 @@
-module "fallback_consumer_source" {
+module "message_consumer_source" {
   source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/messageConsumer/lambda.zip"
   release = var.release
@@ -8,7 +8,7 @@ module "fallback_consumer_source" {
 }
 
 resource "aws_lambda_function" "fallback_consumer_source" {
-  depends_on       = [ module.fallback_consumer_source ]
+  depends_on       = [ module.message_consumer_source ]
   function_name    = "${var.prefix}-fallbackConsumer"
   filename         = "${path.module}/../../packages/api/dist/messageConsumer/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/messageConsumer/lambda.zip")
