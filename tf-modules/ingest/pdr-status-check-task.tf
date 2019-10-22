@@ -1,7 +1,23 @@
+locals {
+  dist_path = "${path.module}/../../tasks/pdr-status-check/dist/lambda.zip"
+}
+
+module "pdr_status_check_source" {
+  source = "../../github_lambda_source"
+  archive = local.dist_path
+  release = var.release
+  repo = "nasa/cumulus"
+  zip_file = "cumulus-discover-pdrs-task.zip"
+  local_core_lambda = var.local_core_lambda
+}
+
+
+
 resource "aws_lambda_function" "pdr_status_check_task" {
+  depends_on       = [ pdr_status_check_source ]
   function_name    = "${var.prefix}-PdrStatusCheck"
-  filename         = "${path.module}/../../tasks/pdr-status-check/dist/lambda.zip"
-  source_code_hash = filebase64sha256("${path.module}/../../tasks/pdr-status-check/dist/lambda.zip")
+  filename         = local.dist_path
+  source_code_hash = filebase64sha256(local.dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

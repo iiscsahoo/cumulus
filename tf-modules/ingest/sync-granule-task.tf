@@ -1,7 +1,21 @@
+locals {
+  dist_path = "${path.module}/../../tasks/sync-granule/dist/lambda.zip"
+}
+
+module "sync_granule_source" {
+  source = "../../github_lambda_source"
+  archive = local.dist_path
+  release = var.release
+  repo = "nasa/cumulus"
+  zip_file = "cumulus-sync-granule-task.zip"
+  local_core_lambda = var.local_core_lambda
+}
+
 resource "aws_lambda_function" "sync_granule_task" {
+  depends_on       = [ sync_granule_source ]
   function_name    = "${var.prefix}-SyncGranule"
-  filename         = "${path.module}/../../tasks/sync-granule/dist/lambda.zip"
-  source_code_hash = filebase64sha256("${path.module}/../../tasks/sync-granule/dist/lambda.zip")
+  filename         = local.dist_path
+  source_code_hash = filebase64sha256(local.dist_path)
   handler          = "index.handler"
   role             = var.lambda_processing_role_arn
   runtime          = "nodejs8.10"

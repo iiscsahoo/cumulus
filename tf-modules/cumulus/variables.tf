@@ -249,3 +249,8 @@ variable "private_archive_api_gateway" {
   type = bool
   default = true
 }
+
+variable "local_core_lambda" {
+  type = bool
+  default = false
+}

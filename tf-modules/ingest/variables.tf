@@ -108,3 +108,13 @@ variable "vpc_id" {
   type    = string
   default = null
 }
+
+variable "release" {
+  type = string
+  default = null
+}
+
+variable "local_core_lambda" {
+  type = bool
+  default = false
+}

@@ -44,4 +44,6 @@ module "ingest" {
   report_executions_sns_topic_arn = module.archive.report_executions_sns_topic_arn
   report_granules_sns_topic_arn   = module.archive.report_granules_sns_topic_arn
   report_pdrs_sns_topic_arn       = module.archive.report_pdrs_sns_topic_arn
+
+  local_core_lambda = var.local_core_lambda
 }
