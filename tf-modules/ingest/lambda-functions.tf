@@ -248,7 +248,7 @@ module "sf_starter_source" {
 }
 
 resource "aws_lambda_function" "sqs2sf" {
-  depends_on       = [ module.sf_fstarter_source ]
+  depends_on       = [ module.sf_starter_source ]
   function_name    = "${var.prefix}-sqs2sf"
   filename         = "${path.module}/../../packages/api/dist/sfStarter/lambda.zip"
   source_code_hash = filebase64sha256("${path.module}/../../packages/api/dist/sfStarter/lambda.zip")
