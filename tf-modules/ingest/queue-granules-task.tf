@@ -4,7 +4,7 @@ locals {
 
 module "queue_granules_source" {
   source = "../github_lambda_source"
-  archive = local.dist_path
+  archive = local.queue_granules_dist_path
   release = var.release
   repo = "nasa/cumulus"
   zip_file = "cumulus-queue-granules-task.zip"
