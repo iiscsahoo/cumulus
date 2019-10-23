@@ -11,7 +11,7 @@ module "discover_pdrs_source" {
   local_core_lambda = var.local_core_lambda
 }
 
-resource "aws_lambda_function" "discover_pdrs_source" {
+resource "aws_lambda_function" "discover_pdrs_task" {
   depends_on       = [ module.discover_pdrs_source ]
   filename         = local.discover_pdrs_dist
   function_name    = "${var.prefix}-DiscoverPdrs"
