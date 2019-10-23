@@ -7,7 +7,7 @@ module "message_consumer_source" {
   local_core_lambda = var.local_core_lambda
 }
 
-resource "aws_lambda_function" "fallback_consumer_source" {
+resource "aws_lambda_function" "fallback_consumer" {
   depends_on       = [ module.message_consumer_source ]
   function_name    = "${var.prefix}-fallbackConsumer"
   filename         = "${path.module}/../../packages/api/dist/messageConsumer/lambda.zip"
