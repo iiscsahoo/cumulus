@@ -6,7 +6,7 @@ module "queue_pdrs_source" {
   source = "../github_lambda_source"
   archive = local.queue_pdrs_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-queue-pdrs-task.zip"
   local_core_lambda = var.local_core_lambda
 }

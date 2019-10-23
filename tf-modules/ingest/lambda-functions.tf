@@ -2,7 +2,7 @@ module "message_consumer_source" {
   source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/messageConsumer/lambda.zip"
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-message-consumer.zip"
   local_core_lambda = var.local_core_lambda
 }
@@ -42,7 +42,7 @@ module "kinesis_event_logger_source" {
   source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/payloadLogger/lambda.zip"
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-payload-logger.zip"
   local_core_lambda = var.local_core_lambda
 }
@@ -128,7 +128,7 @@ module "schedule_sf_source" {
   source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/sfScheduler/lambda.zip"
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-sf-source.zip"
   local_core_lambda = var.local_core_lambda
 }
@@ -167,7 +167,7 @@ module "sf_semaphore_down_source" {
   source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/sfSemaphoreDown/lambda.zip"
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-semaphore-down.zip"
   local_core_lambda = var.local_core_lambda
 }
@@ -201,7 +201,7 @@ module "sf_sns_report_source" {
   source = "../github_lambda_source"
   archive = "${path.module}/../../tasks/sf-sns-report/dist/lambda.zip"
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "sf-sns-report.zip"
   local_core_lambda = var.local_core_lambda
 }
@@ -242,7 +242,7 @@ module "sf_starter_source" {
   source = "../github_lambda_source"
   archive = "${path.module}/../../packages/api/dist/sfStarter/lambda.zip"
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "sf-starter.zip"
   local_core_lambda = var.local_core_lambda
 }

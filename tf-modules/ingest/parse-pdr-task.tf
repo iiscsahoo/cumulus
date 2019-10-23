@@ -6,7 +6,7 @@ module "parse_pdr_source" {
   source = "../github_lambda_source"
   archive = local.parse_pdr_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-parse-pdr-task.zip"
   local_core_lambda = var.local_core_lambda
 }

@@ -6,7 +6,7 @@ module "files_to_granules_source" {
   source = "../github_lambda_source"
   archive = local.files_to_granules_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-files-to-granules-task.zip"
   local_core_lambda = var.local_core_lambda
 }

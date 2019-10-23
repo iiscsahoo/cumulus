@@ -6,7 +6,7 @@ module "move_granules_source" {
   source = "../github_lambda_source"
   archive = local.move_granules_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-move-granules-task.zip"
   local_core_lambda = var.local_core_lambda
 }

@@ -6,7 +6,7 @@ module "pdr_status_check_source" {
   source = "../github_lambda_source"
   archive = local.pdr_status_check_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-discover-pdrs-task.zip"
   local_core_lambda = var.local_core_lambda
 }

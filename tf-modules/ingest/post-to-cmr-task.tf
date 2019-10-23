@@ -6,7 +6,7 @@ module "post_to_cmr_source" {
   source = "../github_lambda_source"
   archive = local.post_to_cmr_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-post-to-cmr-task.zip"
   local_core_lambda = var.local_core_lambda
 }

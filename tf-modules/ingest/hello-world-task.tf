@@ -6,7 +6,7 @@ module "hello_world_source" {
   source = "../github_lambda_source"
   archive = local.hello_world_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-hello-world-task.zip"
   local_core_lambda = var.local_core_lambda
 }

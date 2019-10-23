@@ -6,7 +6,7 @@ module "sync_granule_source" {
   source = "../github_lambda_source"
   archive = local.sync_granules_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-sync-granule-task.zip"
   local_core_lambda = var.local_core_lambda
 }

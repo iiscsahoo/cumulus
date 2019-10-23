@@ -6,7 +6,7 @@ module "discover_pdrs_source" {
   source = "../github_lambda_source"
   archive = local.discover_pdrs_dist
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-discover-pdrs-task.zip"
   local_core_lambda = var.local_core_lambda
 }

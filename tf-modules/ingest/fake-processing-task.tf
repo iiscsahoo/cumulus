@@ -6,7 +6,7 @@ module "fake_processing_source" {
   source = "../github_lambda_source"
   archive = local.fake_processing_dist_path
   release = var.release
-  repo = "nasa/cumulus"
+   repo = "Jkovarik/cumulus"
   zip_file = "cumulus-fake-processing-task.zip"
   local_core_lambda = var.local_core_lambda
 }
