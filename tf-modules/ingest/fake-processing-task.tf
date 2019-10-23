@@ -1,5 +1,5 @@
 locals {
-  fake_processing_dist_path = "${path.module}/../../tasks/fake-processing-task/dist/lambda.zip"
+  fake_processing_dist_path = "${path.module}/../../tasks/test-processing/dist/lambda.zip"
 }
 
 module "fake_processing_source" {
