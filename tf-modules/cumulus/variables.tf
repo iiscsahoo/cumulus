@@ -250,6 +250,11 @@ variable "private_archive_api_gateway" {
   default = true
 }
 
+variable "release" {
+  type = string
+  default = "master"
+}
+
 variable "local_core_lambda" {
   type = bool
   default = false
